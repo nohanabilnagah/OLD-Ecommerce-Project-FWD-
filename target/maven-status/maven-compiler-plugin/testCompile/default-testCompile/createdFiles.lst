@@ -1,0 +1,6 @@
+step_definitions\C3_RestPasswordStepDefinitions.class
+step_definitions\C4_SearchStepDefinitions.class
+Runner\TestRunner.class
+step_definitions\C1_RegistrationStepDefinitions.class
+step_definitions\C2_LoginStepDefinitions.class
+step_definitions\Hook.class
