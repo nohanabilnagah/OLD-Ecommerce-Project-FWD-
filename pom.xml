@@ -96,8 +96,8 @@
                         </goals>
                         <configuration>
                             <projectName>Cucumber HTML Reports</projectName>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <outputDirectory>target</outputDirectory>
+                            <inputDirectory>target</inputDirectory>
                             <jsonFiles>
                                 <param>**/cucumber*.json</param>
                             </jsonFiles>

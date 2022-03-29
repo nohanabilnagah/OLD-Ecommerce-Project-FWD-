@@ -1,51 +1,61 @@
 package step_definitions;
 
+import Pages.P3_RestPassPageElements;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.testng.Assert;
-
 import java.util.concurrent.TimeUnit;
 
 public class C3_RestPasswordStepDefinitions {
 
-    @Given("user is on the login page")
-    public void user_is_on_the_login_page()
-    {
-        Hooks.driver.findElement(By.linkText("Log in")).click();
-    }
+    P3_RestPassPageElements restPass = Hooks.PageBase.p3_restPassPageElementsPOM();
 
-    @When("user clicks on forgot password")
+    @Given("user clicks on forgot password")
     public void user_clicks_on_forgot_password()
     {
-        Hooks.driver.findElement(By.cssSelector("a[href=\"/passwordrecovery\"]")).click();
+        // Press Forgot Password Button using POM //
+        restPass.restForgotPassButtonEle();
     }
+    //------------------------------------------------------------------------------//
 
-    @And("user enters his email address to reset password")
+    @When("user enters his valid email address")
     public void user_enters_his_email_address_to_reset_password()
     {
         Hooks.driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-        Hooks.driver.findElement(By.cssSelector("input.email")).click();
-        Hooks.driver.findElement(By.cssSelector("input.email")).clear();
-        Hooks.driver.findElement(By.cssSelector("input.email")).sendKeys("noha.nabil83@gmail.com");
+        // Enter valid email using POM //
+        restPass.restEmailEle(C1_RegistrationStepDefinitions.email);
     }
+    //------------------------------------------------------------------------------//
 
-    @Then("user clicks on recover button")
+    @And("user clicks on recover button")
     public void user_clicks_on_recover_button()
     {
-        Hooks.driver.findElement(By.cssSelector("button[class=\"button-1 password-recovery-button\"]")).click();
+        // Press Recover Button using POM //
+        restPass.restRecoverButtonEle();
     }
+    //------------------------------------------------------------------------------//
 
-    @And("user gets a displayed message")
-    public void user_gets_a_displayed_message() throws InterruptedException {
-        Thread.sleep(2000);
-
+    @Then("user got a Displayed Message")
+    public void got_a_Displayed_Message()
+    {
+        Hooks.driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        restPass.restAsserEle();
+        // RestPassword Assertion using POM //
         String expectedResult = "Email with instructions has been sent to you.";
-        String actualResult = Hooks.driver.findElement(By.cssSelector("p[class=\"content\"]")).getText();
-        Assert.assertTrue(actualResult.contains(expectedResult));
-        System.out.println("Email with instructions has been sent to you.");
+        Assert.assertTrue(restPass.restAsserEle().contains(expectedResult), "Assertion False: Display message doesn't exist");
+        System.out.println("Password Recovery: Email with instructions has been sent to you.");
     }
+    //------------------------------------------------------------------------------//
 
+    @And("user could close the Notification Bar")
+    public void close_Notification_Bar() throws InterruptedException {
+       // Close Notification Bar using POM //
+        restPass.restCloseBar();
+        Thread.sleep(5000);
+
+    }
+    //------------------------------------------------------------------------------//
 }
+//------------------------------------------------------------------------------------------------------------//

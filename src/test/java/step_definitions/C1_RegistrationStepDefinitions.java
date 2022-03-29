@@ -1,89 +1,74 @@
 package step_definitions;
 
+import Pages.P1_RegistrationPageElements;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import java.util.Random;
 
 public class C1_RegistrationStepDefinitions {
+
+    P1_RegistrationPageElements register = Hooks.PageBase.p1_registrationPageElementsPOM();
 
     @Given("new user launch registration page")
     public void new_user_launch_registration_page()
     {
-        // Register as new user //
-        Hooks.driver.findElement(By.linkText("Register")).click();
+        // Register as new user using POM //
+        register.registerPageEle();
     }
     //------------------------------------------------------------------------------//
 
-    @When("new user fills registration form with valid data")
+        // Write Valid Email with Random Generator //
+        static Random randomGenerator = new Random();
+        static int randomInt = randomGenerator.nextInt(1000);
+        static String s = Integer.toString(randomInt);
+        public static String email = "noha.nabil83"+ s +"@gmail.com";
+        public static String pass = "123456";
+        public static String FirstName = "Noha";
+        public static String LastName = "Nabil";
+        public static String CompName = "Embassy";
+    //------------------------------------------------------------------------------//
+
+    @And("new user fills registration form with valid data")
     public void new_user_fills_registration_form_with_valid_data() {
-        // Fill valid Name and Last Name //
-        Hooks.driver.findElement(By.id("gender-female")).click();
-
-        Hooks.driver.findElement(By.id("FirstName")).click();
-        Hooks.driver.findElement(By.id("FirstName")).clear();
-        Hooks.driver.findElement(By.id("FirstName")).sendKeys("Noha");
-
-        Hooks.driver.findElement(By.id("LastName")).click();
-        Hooks.driver.findElement(By.id("LastName")).clear();
-        Hooks.driver.findElement(By.id("LastName")).sendKeys("Nabil");
-
-        // Select Day from Value //
-        Select selday = new Select(Hooks.driver.findElement(By.name("DateOfBirthDay"))); //Create object of the Select class
-        selday.selectByValue("12"); //Select the option using with value
-        // Select Month from VisibleText
-        Select selmon = new Select(Hooks.driver.findElement(By.name("DateOfBirthMonth")));
-        selmon.selectByVisibleText("March"); //Select the option using visible text
-        // Select Year from Value
-        Select selyear = new Select(Hooks.driver.findElement(By.name("DateOfBirthYear")));
-        selyear.selectByValue("1983");
-
-        // Write valid Email //
-        Hooks.driver.findElement(By.id("Email")).click();
-        Hooks.driver.findElement(By.id("Email")).clear();
-        Hooks.driver.findElement(By.id("Email")).sendKeys("noha.nabil83@gmail.com");
-
-        // Write Company Name //
-        Hooks.driver.findElement(By.xpath("//input[@name=\"Company\"]")).click();
-        Hooks.driver.findElement(By.xpath("//input[@name=\"Company\"]")).clear();
-        Hooks.driver.findElement(By.xpath("//input[@name=\"Company\"]")).sendKeys("Embassy of Panama");
-
-        // Uncheck Newsletter
-        Hooks.driver.findElement(By.xpath("//label[@for=\"Newsletter\"]")).click();
-
-        // Write and confirm Password //
-        Hooks.driver.findElement(By.id("Password")).click();
-        Hooks.driver.findElement(By.id("Password")).clear();
-        Hooks.driver.findElement(By.id("Password")).sendKeys("123456");
-
-        Hooks.driver.findElement(By.id("ConfirmPassword")).click();
-        Hooks.driver.findElement(By.id("ConfirmPassword")).clear();
-        Hooks.driver.findElement(By.id("ConfirmPassword")).sendKeys("123456");
+        // Fill valid Data using POM //
+        register.registerDataEle(FirstName, LastName, email, pass, CompName);
     }
-        //------------------------------------------------------------------------------//
+    //------------------------------------------------------------------------------//
 
-        @And("new user could register")
-        public void new_user_could_register()
+    @When("new user can register")
+    public void new_user_can_register()
         {
-            //Hooks.driver.findElement(By.id("ConfirmPassword")).sendKeys(Keys.ENTER);
-            Hooks.driver.findElement(By.id("register-button")).click();
+        // Press Register Button using POM //
+        register.registerButtonEle();
         }
         //------------------------------------------------------------------------------//
 
     @Then("a success message is displayed")
     public void a_success_message_is_displayed()
     {
+        // Registration Assertion_1 using POM //
+        register.registerAsserEle();
         System.out.println("Assertion: Your registration completed");
-        Assert.assertTrue(Hooks.driver.findElement(By.className("ico-account")).isDisplayed());
 
+        // Registration Assertion_2 using POM//
         String expectedResult = "Your registration completed";
-        String actualResult = Hooks.driver.findElement(By.cssSelector("div[class=\"result\"]")).getText();
-        Assert.assertTrue(actualResult.contains(expectedResult));
-        System.out.println("Your registration completed");
+//        Assert.assertEquals(register.registerAsserEle(), expectedResult, "Registration Failed");
+        Assert.assertTrue(register.registerAsserEle().contains(expectedResult), "Error Message: User couldn't register successfully");
+        System.out.println("Congratulations! Your registration completed");
+    }
+    //------------------------------------------------------------------------------//
+
+    @And("user logs out after registering")
+    public void log_out_after_registering()
+    {
+        // Logout from account using POM //
+        register.registerLogoutEle();
     }
     //------------------------------------------------------------------------------//
 
 }
+//------------------------------------------------------------------------------------------------------------//
+

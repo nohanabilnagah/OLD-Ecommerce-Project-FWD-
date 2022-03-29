@@ -6,14 +6,21 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/main/resources/features",
         glue = "step_definitions",
-        tags = "@smoke",
+        monochrome = true,
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber-pretty.html",
-                "json:target/cucumber-reports/cucumber-pretty.json",
-                "rerun:target/cucumber-reports/rerun.txt"
-        }
+                "html:target/cucumber.html",
+                "json:target/cucumber.json",
+                "junit:target/cukes.xml",
+                "rerun:target/rerun.txt"},
+        dryRun = false,
+        tags = "@smoke"
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 }
+
+
+
+
+
