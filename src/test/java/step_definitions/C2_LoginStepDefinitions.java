@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import utilities.BrowserUtils;
 
 
 public class C2_LoginStepDefinitions {
@@ -13,10 +13,10 @@ public class C2_LoginStepDefinitions {
     P2_LoginPageElements login = Hooks.PageBase.p2_loginPageElementsPOM();
 
     @Given("user navigates to login page")
-    public void user_navigates_to_login_page() throws InterruptedException {
+    public void user_navigates_to_login_page() {
         // Navigate to Login Page using POM //
         login.loginPageEle();
-        Thread.sleep(1000);
+        BrowserUtils.waitFor(1);
     }
     //------------------------------------------------------------------------------//
 
@@ -30,7 +30,7 @@ public class C2_LoginStepDefinitions {
 
     @Then("user could login successfully")
     public void user_could_login_successfully() throws InterruptedException {
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
         // Login Assertion using POM //
         login.loginAsserEle();
         System.out.println("Assertion: User has logged in Successfully");

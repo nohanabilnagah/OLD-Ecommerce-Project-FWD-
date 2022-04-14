@@ -4,6 +4,8 @@ import Pages.P7_FilterColorPageElements;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utilities.BrowserUtils;
+
 import java.util.concurrent.TimeUnit;
 
 public class C7_FilterColorStepDefinitions {
@@ -11,10 +13,10 @@ public class C7_FilterColorStepDefinitions {
     P7_FilterColorPageElements color = Hooks.PageBase.p7_filterColorPageElementsPOM();
 
     @Given("logged user selects Category and hover to open sub-Category")
-    public void select_Category_and_hover_to_open_SubCategory() throws InterruptedException {
+    public void select_Category_and_hover_to_open_SubCategory() {
         // Select Apparel Category and hover to open Shoes sub-Category using POM //
         color.colorSelProdEle();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
     }
     //------------------------------------------------------------------------------//
 

@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utilities.BrowserUtils;
 
 
 public class C12_OrderCheckoutStepDefinitions {
@@ -42,26 +43,26 @@ public class C12_OrderCheckoutStepDefinitions {
     //------------------------------------------------------------------------------//
 
     @And("logged user confirms Billing address")
-    public void confirms_Billing_address() throws InterruptedException {
+    public void confirms_Billing_address() {
         // Save Billing Address using POM //
         checkout.checkoutBillAddSaveEle();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
     }
     //------------------------------------------------------------------------------//
 
     @And("logged user selects Shipping Method to Continue")
-    public void select_Shipping_Method_and_Continue() throws InterruptedException {
+    public void select_Shipping_Method_and_Continue() {
         // Select Shipping Method and Continue using POM //
         checkout.checkoutShipMethEle();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
     }
     //------------------------------------------------------------------------------//
 
     @And("logged user selects Payment Method to Continue")
-    public void select_Payment_Method_and_Continue() throws InterruptedException {
+    public void select_Payment_Method_and_Continue() {
         // Select Payment Method (Credit Card) and Continue using POM //
         checkout.checkoutPayMethEle();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
     }
     //------------------------------------------------------------------------------//
 
@@ -92,19 +93,19 @@ public class C12_OrderCheckoutStepDefinitions {
     //------------------------------------------------------------------------------//
 
     @And("logged user could save invoice")
-    public void Save_Invoice() throws InterruptedException {
+    public void Save_Invoice() {
         // Save PDF Invoice using POM //
         checkout.checkoutInvoiceSaveEle();
-        Thread.sleep(3000);
+        BrowserUtils.waitFor(3);
         System.out.println("PDF Invoice has been downloaded Successfully");
     }
     //------------------------------------------------------------------------------//
 
     @And("logged user could print invoice")
-    public void Print_Invoice() throws InterruptedException {
+    public void Print_Invoice() {
         // Print Invoice using POM //
         checkout.checkoutInvoicePrintEle();
-        Thread.sleep(3000);
+        BrowserUtils.waitFor(3);
         System.out.println("Invoice has been printed Successfully");
     }
     //------------------------------------------------------------------------------//

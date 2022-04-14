@@ -3,6 +3,8 @@ package step_definitions;
 import Pages.P6_CategoriesPageElements;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import utilities.BrowserUtils;
+
 import java.util.concurrent.TimeUnit;
 
 public class C6_CategoriesStepDefinitions {
@@ -10,10 +12,10 @@ public class C6_CategoriesStepDefinitions {
     P6_CategoriesPageElements category = Hooks.PageBase.p6_categoriesPageElementsPOM();
 
     @Given("logged user can select Random Category")
-    public void select_random_Category() throws InterruptedException {
+    public void select_random_Category() {
         // Select Random Category using POM //
         category.categoryRandomEle();
-        Thread.sleep(2000);
+        BrowserUtils.waitFor(2);
     }
     //------------------------------------------------------------------------------//
 

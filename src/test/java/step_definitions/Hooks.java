@@ -5,6 +5,8 @@ import io.cucumber.java.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utilities.BrowserUtils;
+
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -33,8 +35,8 @@ public class Hooks {
     }
 
     @AfterAll
-    public static void user_closes_the_driver() throws InterruptedException {
-        Thread.sleep(2000);
+    public static void user_closes_the_driver() {
+        BrowserUtils.waitFor(2);
         driver.quit();
     }
 }

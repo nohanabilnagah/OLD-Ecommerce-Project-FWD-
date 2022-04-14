@@ -6,6 +6,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import utilities.BrowserUtils;
+
 import java.util.concurrent.TimeUnit;
 
 public class C3_RestPasswordStepDefinitions {
@@ -50,10 +52,10 @@ public class C3_RestPasswordStepDefinitions {
     //------------------------------------------------------------------------------//
 
     @And("user could close the Notification Bar")
-    public void close_Notification_Bar() throws InterruptedException {
+    public void close_Notification_Bar() {
        // Close Notification Bar using POM //
         restPass.restCloseBar();
-        Thread.sleep(5000);
+        BrowserUtils.waitFor(5);
 
     }
     //------------------------------------------------------------------------------//

@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utilities.BrowserUtils;
 
 public class C10_WishlistStepDefinitions {
 
@@ -19,19 +20,19 @@ public class C10_WishlistStepDefinitions {
     //------------------------------------------------------------------------------//
 
     @When("logged user adds a product to the Wishlist")
-    public void add_a_product_to_the_Wishlist() throws InterruptedException {
+    public void add_a_product_to_the_Wishlist() {
         // Add product_1 to Wishlist & Assert its existence using POM //
         wishList.wishListProd1AddEle();
-        Thread.sleep(3000);
+        BrowserUtils.waitFor(3);
         System.out.println("First product has been added to your wishlist");
     }
     //------------------------------------------------------------------------------//
 
     @And("logged user adds another product to the Wishlist")
-    public void add_another_product_to_the_Wishlist() throws InterruptedException {
+    public void add_another_product_to_the_Wishlist() {
         // Add product_2 to Wishlist & Assert its existence using POM //
         wishList.wishListProd2AddEle();
-        Thread.sleep(3000);
+        BrowserUtils.waitFor(3);
         System.out.println("Second product has been added to your wishlist");
     }
     //------------------------------------------------------------------------------//
