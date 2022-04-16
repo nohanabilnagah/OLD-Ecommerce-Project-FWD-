@@ -1,6 +1,6 @@
-# FWD-Ecommerce-Project
+# FWD_E-Commerce_Project
 
-Ecommerce Project using Selenium with Cucumber (BDD Framework).
+E-Commerce Project using Selenium with Cucumber (BDD Framework).
 
 Maven project with selenium framework.
 
