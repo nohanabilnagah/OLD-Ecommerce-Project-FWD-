@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class P12_OrderCheckPageElements {
@@ -57,7 +58,8 @@ public class P12_OrderCheckPageElements {
 
         // Wait for Checkout Page//
         // Option_1 to Wait
-        WebDriverWait wait1 = new WebDriverWait(driver, 15);
+        Duration timeout = Duration.ofSeconds(15);
+        WebDriverWait wait1 = new WebDriverWait(driver, timeout);
         wait1.until(ExpectedConditions.textToBePresentInElementLocated(checkoutWaitPOM, "Checkout"));
 
 //        //Option_2 to Wait
@@ -165,7 +167,8 @@ public class P12_OrderCheckPageElements {
         // Press CONTINUE //
         driver.findElement(checkoutPaymentSaveBtnPOM).click();
         // Assertion //
-        WebDriverWait wait = new WebDriverWait(driver, 15);
+        Duration timeout = Duration.ofSeconds(15);
+        WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.textToBePresentInElementLocated(checkoutOrderConfirmBtnPOM, "CONFIRM"));
     }
     //------------------------------------------------------------------------------//
@@ -175,7 +178,8 @@ public class P12_OrderCheckPageElements {
         // Confirm Order //
         driver.findElement(checkoutOrderConfirmBtnPOM).click();
         // Assertion //
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        Duration timeout = Duration.ofSeconds(20);
+        WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.textToBePresentInElementLocated(checkoutConfirmationPOM, "Thank you"));
     }
     //------------------------------------------------------------------------------//

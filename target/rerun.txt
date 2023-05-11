@@ -1,0 +1,2 @@
+file:src/main/resources/features/F01_Registration.feature:4
+file:src/main/resources/features/F06_Categories.feature:4

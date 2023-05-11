@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class P11_ShoppCartPageElements {
 
     public WebDriver driver;
@@ -33,7 +35,8 @@ public class P11_ShoppCartPageElements {
         // Add Wishlist products to CART //
         driver.findElement(shoppCartADDPOM).click();
         // Wait until products appear in Shopping Cart //
-        WebDriverWait wait=new WebDriverWait(driver,15);
+        Duration timeout = Duration.ofSeconds(15);
+        WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.presenceOfElementLocated(shoppCartWaitPOM));
     }
     //------------------------------------------------------------------------------//
